@@ -31,8 +31,10 @@ try nCommon nDistinct =
            ++ show (nCommon + 2 * nDistinct)
        putStrLn $ "Count of distinct documents:         e^("
            ++ (show $ log $ fromIntegral $ 2 * nDistinct) ++ ")"
-       putStrLn $ "Guessed count of distinct documents: e^("
-           ++ (show $ log $ fromIntegral $ estimate) ++ ")"
+       putStr $ "Guessed count of distinct documents: "
+       case estimate of
+         Just est -> putStrLn $ "e^(" ++ (show $ log $ fromIntegral est) ++ ")"
+         Nothing -> putStrLn "no estimate possible: not enough data"
 
 main =
     do try 1000 10
